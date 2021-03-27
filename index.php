@@ -1,6 +1,8 @@
 <html>
 <body>
     <h1 style="margin:20px">PHP-in-HTML Refresher</h1>
+    <a style="margin:20px;margin-top:0px" href="https://github.com/ydubler/php-refresher">Link to Github</a>
+    <br/>
     <div id="conditional" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
     <h3 style="margin-top:0px"><u>Conditional</u></h3>
         <pre>
@@ -311,9 +313,10 @@ listOfBooksByAuthor("George R R Martin");
         echo "<br/>";
         listOfBooksByAuthor("Hurston");
         echo "<br/>";
-        listOfBooksByAuthor("Vonnegut");
+        $listOfBooksByAuthor = "listOfBooksByAuthor";  // setting the function name as a variable stringe
+        $listOfBooksByAuthor("Vonnegut");              // calling the function as the variable
         echo "<br/>";
-        listOfBooksByAuthor("George R R Martin");
+        $listOfBooksByAuthor("George R R Martin");     // calling the function as the variable
         ?>
     </div>
 </body>
