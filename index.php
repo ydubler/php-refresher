@@ -232,17 +232,17 @@ EOT;
 $array = [1,2,3,"four", "V", "sqrt(36)"];
 
 echo 'echo $array : ';
-echo $array . "&lt;br/&gt(...echo doesn't show the contents of the array)";
-echo "&lt;br/&gt&lt;br/&gt";
+echo $array . "&lt;br/&gt;(...echo doesn't show the contents of the array)";
+echo "&lt;br/&gt;&lt;br/&gt;";
 
 print('print($array) : ');
 print($array);
-print("&lt;br/&gt(...print() doesn't show the contents of the array)");
-print("&lt;br/&gt&lt;br/&gt");
+print("&lt;br/&gt;(...print() doesn't show the contents of the array)");
+print("&lt;br/&gt;&lt;br/&gt;");
 
 print_r('print_r($array) : ');
 print_r($array);
-print_r("&lt;br/&gt(...print_r() DOES show the contents of the array)");
+print_r("&lt;br/&gt;(...print_r() DOES show the contents of the array)");
         </pre>
         <hr style="margin-top:0px">
         RESULT
@@ -264,6 +264,148 @@ print_r("&lt;br/&gt(...print_r() DOES show the contents of the array)");
         print_r('print_r($array) : ');
         print_r($array);
         print_r("<br/>(...print_r() DOES show the contents of the array)");
+        ?>
+    </div>
+    <div id="working-with-arrays" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Working With Arrays: in_array(), array_push(), array_pop()</u></h3>
+        <pre>
+$array = [1,2,3];
+$count = count($array);
+
+echo "\$array = [ ";
+for($i=0; $i<$count; $i++)
+{
+    if($i < $count - 1)
+    {
+        echo $array[$i] . " , ";
+    }
+    else
+    {
+        echo $array[$i] . " ]";
+    }
+}
+echo "&lt;br/&gt;";
+
+echo "Is 3 in the array? ";
+$inArray = in_array(3, $array);
+echo $inArray ? "Yes" : "No";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+echo 'array_push($array, 4);&lt;br/&gt;&lt;br/&gt;';
+array_push($array, 4);
+$count = count($array);
+echo "\$array = [ ";
+for($i=0; $i<$count; $i++)
+{
+    if($i < $count - 1)
+    {
+        echo $array[$i] . " , ";
+    }
+    else
+    {
+        echo $array[$i] . " ]";
+    }
+}
+echo "&lt;br/&gt;";
+echo "Is 4 in the array? ";
+$inArray = in_array(4, $array);
+echo $inArray ? "Yes" : "No";
+echo "&lt;br/&gt;";
+echo "Is 5 in the array? ";
+$inArray = in_array(5, $array);
+echo $inArray ? "Yes" : "No";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+echo 'array_pop($array) = ';
+$poppedValue = array_pop($array);
+echo $poppedValue;
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$count = count($array);
+echo "\$array = [ ";
+for($i=0; $i<$count; $i++)
+{
+    if($i < $count - 1)
+    {
+        echo $array[$i] . " , ";
+    }
+    else
+    {
+        echo $array[$i] . " ]";
+    }
+}
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // print_r prints the contents of an array
+        $array = [1,2,3];
+        $count = count($array);
+
+        echo "\$array = [ ";
+        for($i=0; $i<$count; $i++)
+        {
+            if($i < $count - 1)
+            {
+                echo $array[$i] . " , ";
+            }
+            else
+            {
+                echo $array[$i] . " ]";
+            }
+        }
+        echo "<br/>";
+
+        echo "Is 3 in the array? ";
+        $inArray = in_array(3, $array);
+        echo $inArray ? "Yes" : "No";
+        echo "<br/><br/>";
+
+        echo 'array_push($array, 4);<br/><br/>';
+        array_push($array, 4);
+        $count = count($array);
+        echo "\$array = [ ";
+        for($i=0; $i<$count; $i++)
+        {
+            if($i < $count - 1)
+            {
+                echo $array[$i] . " , ";
+            }
+            else
+            {
+                echo $array[$i] . " ]";
+            }
+        }
+        echo "<br/>";
+        echo "Is 4 in the array? ";
+        $inArray = in_array(4, $array);
+        echo $inArray ? "Yes" : "No";
+        echo "<br/>";
+        echo "Is 5 in the array? ";
+        $inArray = in_array(5, $array);
+        echo $inArray ? "Yes" : "No";
+        echo "<br/><br/>";
+
+        echo 'array_pop($array) = ';
+        $poppedValue = array_pop($array);
+        echo $poppedValue;
+        echo "<br/><br/>";
+
+        $count = count($array);
+        echo "\$array = [ ";
+        for($i=0; $i<$count; $i++)
+        {
+            if($i < $count - 1)
+            {
+                echo $array[$i] . " , ";
+            }
+            else
+            {
+                echo $array[$i] . " ]";
+            }
+        }
         ?>
     </div>
     <div id="functions-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
