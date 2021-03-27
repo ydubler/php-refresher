@@ -178,8 +178,96 @@ echo var_dump(NAME_OF_CONSTANT) . "&lt;br/&gt;";
         echo var_dump(NAME_OF_CONSTANT) . "<br/>";
         ?>
     </div>
+    <div id="strings-single-double-quotes" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Strings Single vs Double Quotes</u></h3>
+        <pre>
+$currency = "penny";
+$singleQuote = '\'A &lt;b&gt;$currency&lt;/b&gt; saved is a &lt;b&gt;$currency&lt;/b&gt; earned.\' (Single quotes do not insert variables)';
+$doubleQuote = "\"A &lt;b&gt;$currency&lt;/b&gt; saved i a &lt;b&gt;$currency&lt;/b&gt; earned.\" (Double quotes insert variables)";
+
+echo $singleQuote . "&lt;br/&gt;";
+echo $doubleQuote;
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // String single vs double quote
+        $currency = "penny";
+        $singleQuote = '\'A <b>$currency</b> saved is a <b>$currency</b> earned.\' (Single quotes do not insert variables)';
+        $doubleQuote = "\"A <b>$currency</b> saved is a <b>$currency</b> earned.\" (Double quotes do insert variables)";
+
+        echo $singleQuote . "<br/>";
+        echo $doubleQuote;
+        ?>
+    </div>
+    <div id="eot" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>EOT & print()</u></h3>
+        <pre>
+echo <<&lt;EOT
+To be or not to be, that is the question. Whether 'tis nobler in mind to suffer the slings and arrows of outrageous
+fortune or tocome to terms with a sea of troubles and by opposing end them...&lt;br/&gt;&lt;br/&gt;
+EOT;
+
+print("This is a print statement.");
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // here document >>> eot
+echo <<<EOT
+To be or not to be, that is the question. Whether 'tis nobler in mind to suffer the slings and arrows of outrageous
+fortune or tocome to terms with a sea of troubles and by opposing end them...<br/><br/>
+EOT;
+
+        print("This is a print statement.");
+        ?>
+    </div>
+    <div id="echo-print-print-r" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>echo vs print() vs print_r()</u></h3>
+        <pre>
+$array = [1,2,3,"four", "V", "sqrt(36)"];
+
+echo 'echo $array : ';
+echo $array . "&lt;br/&gt(...echo doesn't show the contents of the array)";
+echo "&lt;br/&gt&lt;br/&gt";
+
+print('print($array) : ');
+print($array);
+print("&lt;br/&gt(...print() doesn't show the contents of the array)");
+print("&lt;br/&gt&lt;br/&gt");
+
+print_r('print_r($array) : ');
+print_r($array);
+print_r("&lt;br/&gt(...print_r() DOES show the contents of the array)");
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // print_r prints the contents of an array
+        $array = [1,2,3,"four", "V", "sqrt(36)"];
+
+        echo 'echo $array : ';
+        echo $array . "<br/>(...echo doesn't show the contents of the array)";
+        echo "<br/><br/>";
+
+        print('print($array) : ');
+        print($array);
+        print("<br/>(...print() doesn't show the contents of the array)");
+        print("<br/><br/>");
+
+        print_r('print_r($array) : ');
+        print_r($array);
+        print_r("<br/>(...print_r() DOES show the contents of the array)");
+        ?>
+    </div>
     <div id="functions-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
-    <h3 style="margin-top:0px"><u>Functions I</u></h3>
+    <h3 style="margin-top:0px"><u>Functions I: Basic Function Call</u></h3>
         <pre>
 function listOfGoodBooks(){
     echo "Romeo and Juliet&lt;br/&gt;";
@@ -213,7 +301,7 @@ listOfGoodBooks();
         ?>
     </div>
     <div id="functions-2" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
-    <h3 style="margin-top:0px"><u>Functions II</u></h3>
+    <h3 style="margin-top:0px"><u>Functions II: Passing arguments to functions</u></h3>
         <pre>
 function listOfBooksByAuthor($author){
     $shakespeare = array("Romeo and Juliet", "Hamlet", "Macbeth", "Othello", "Midsummer Nights Dream", "King Lear");
@@ -313,10 +401,43 @@ listOfBooksByAuthor("George R R Martin");
         echo "<br/>";
         listOfBooksByAuthor("Hurston");
         echo "<br/>";
-        $listOfBooksByAuthor = "listOfBooksByAuthor";  // setting the function name as a variable stringe
-        $listOfBooksByAuthor("Vonnegut");              // calling the function as the variable
+        listOfBooksByAuthor("Vonnegut");
         echo "<br/>";
-        $listOfBooksByAuthor("George R R Martin");     // calling the function as the variable
+        listOfBooksByAuthor("George R R Martin");
+        ?>
+    </div>
+    <div id="functions-3" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Functions III: Calling a function by string variable</u></h3>
+        <pre>
+$quotes = array("'To be or not to be, that is the question.' -Shakespeare / Hamlet", '"There are years that ask questions and years that answer." -Zora Neale Hurston / Their Eyes Were Watching God', '"So it goes..." -Kurt Vonnegut / Slaughterhouse V');
+
+function famousQuote(){
+    foreach($quotes as $quote)
+    {
+        echo $quote . "&lt;br/&gt;";
+    }
+}
+
+$functionName = "famousQuote";
+$functionName();
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Functions
+        function famousQuote(){
+            $quotes = array("'To be or not to be, that is the question.' -- Shakespeare / Hamlet", '"There are years that ask questions and years that answer." -- Zora Neale Hurston / Their Eyes Were Watching God', '"So it goes..." -- Kurt Vonnegut / Slaughterhouse V');
+            foreach($quotes as $quote)
+            {
+                echo $quote . "<br/>";
+            }
+        }
+
+        echo "<u>Famous Quotations</u><br/>";
+        $functionName = "famousQuote";
+        $functionName(); // call a function by a variable defined as a string containing the name of the function
         ?>
     </div>
 </body>
