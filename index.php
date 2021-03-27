@@ -107,7 +107,7 @@ echo "$sum"
         ?>
     </div>
     <div id="variable-types" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
-    <h3 style="margin-top:0px"><u>Conditional</u></h3>
+    <h3 style="margin-top:0px"><u>Variable Types</u></h3>
         <pre>
 $int = 1234;
 $float = 2.2;
@@ -174,6 +174,146 @@ echo var_dump(NAME_OF_CONSTANT) . "&lt;br/&gt;";
         echo 'NAME_OF_CONSTANT = "' . NAME_OF_CONSTANT . '"<br/>';
         echo "is string? " . is_string(NAME_OF_CONSTANT) . "<br/>";
         echo var_dump(NAME_OF_CONSTANT) . "<br/>";
+        ?>
+    </div>
+    <div id="functions-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Functions I</u></h3>
+        <pre>
+function listOfGoodBooks(){
+    echo "Romeo and Juliet&lt;br/&gt;";
+    echo "Their Eyes Were Watching God&lt;br/&gt;";
+    echo "The Count of Monte Cristo&lt;br/&gt;";
+    echo "The Sun Also Rises&lt;br/&gt;";
+    echo "The Grapes of Wrath&lt;br/&gt;";
+    echo "Catcher in the Rye&lt;br/&gt;";
+}
+
+echo "&lt;u&gt;Good Books&lt;/u&gt;&lt;br/&gt;";
+listOfGoodBooks();
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Functions
+        function listOfGoodBooks(){
+            echo "Romeo and Juliet<br/>";
+            echo "Their Eyes Were Watching God<br/>";
+            echo "The Count of Monte Cristo<br/>";
+            echo "The Sun Also Rises<br/>";
+            echo "The Grapes of Wrath<br/>";
+            echo "Catcher in the Rye<br/>";
+        }
+
+        echo "<u>Good Books</u><br/>";
+        listOfGoodBooks();
+        ?>
+    </div>
+    <div id="functions-2" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Functions II</u></h3>
+        <pre>
+function listOfBooksByAuthor($author){
+    $shakespeare = array("Romeo and Juliet", "Hamlet", "Macbeth", "Othello", "Midsummer Nights Dream", "King Lear");
+    $zora = array("Their Eyes Were Watching God");
+    $vonnegut = array("Slaughterhouse V", "Cat's Cradle");
+
+    if($author == "Shakespeare")
+    {
+        echo "&lt;u&gt;Some of Shakespeare's Books:&lt;/u&gt;&lt;br/&gt;";
+        foreach($shakespeare as $book)
+        {
+        echo $book;
+        echo "&lt;br/&gt;";
+        }
+    }
+    
+    else if($author == "Hurston")
+    {
+        echo "&lt;u&gt;A Popular Book of Zora Neal Hurston:&lt;/u&gt;&lt;br/&gt;";
+        foreach($zora as $book)
+        {
+        echo $book;
+        echo "&lt;br/&gt;";
+        }
+    }
+
+    else if($author == "Vonnegut")
+    {
+        echo "&lt;u&gt;A Couple Popular Books written by Kurt Vonnegut:&lt;/u&gt;&lt;br/&gt;";
+        foreach($vonnegut as $book)
+        {
+        echo $book;
+        echo "&lt;br/&gt;";
+        }
+    }
+    else
+    {
+        echo "Author $author not found!";
+    }
+}
+
+listOfBooksByAuthor("Shakespeare");
+echo "&lt;br/&gt;";
+listOfBooksByAuthor("Hurston");
+echo "&lt;br/&gt;";
+listOfBooksByAuthor("Vonnegut");
+echo "&lt;br/&gt;";
+listOfBooksByAuthor("George R R Martin");
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Functions
+        function listOfBooksByAuthor($author){
+            $shakespeare = array("Romeo and Juliet", "Hamlet", "Macbeth", "Othello", "Midsummer Nights Dream", "King Lear");
+            $zora = array("Their Eyes Were Watching God");
+            $vonnegut = array("Slaughterhouse V", "Cat's Cradle");
+
+            if($author == "Shakespeare")
+            {
+                echo "<u>Some of Shakespeare's Books:</u><br/>";
+                foreach($shakespeare as $book)
+                {
+                echo $book;
+                echo "<br/>";
+                }
+            }
+            
+            else if($author == "Hurston")
+            {
+                echo "<u>A Popular Book of Zora Neal Hurston:</u><br/>";
+                foreach($zora as $book)
+                {
+                echo $book;
+                echo "<br/>";
+                }
+            }
+
+            else if($author == "Vonnegut")
+            {
+                echo "<u>A Couple Popular Books written by Kurt Vonnegut:</u><br/>";
+                foreach($vonnegut as $book)
+                {
+                echo $book;
+                echo "<br/>";
+                }
+            }
+            else
+            {
+                echo "Author $author not found!";
+            }
+        }
+
+        listOfBooksByAuthor("Shakespeare");
+        echo "<br/>";
+        listOfBooksByAuthor("Hurston");
+        echo "<br/>";
+        listOfBooksByAuthor("Vonnegut");
+        echo "<br/>";
+        listOfBooksByAuthor("George R R Martin");
         ?>
     </div>
 </body>
