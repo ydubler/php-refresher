@@ -1,8 +1,8 @@
 <html>
 <body>
-    <h1>PHP Refresher</h1>
-    <div id="conditional">
-    <h3><u>Conditional</u></h3>
+    <h1>PHP-in-HTML Refresher</h1>
+    <div id="conditional" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Conditional</u></h3>
         <pre>
 $x=1;
 
@@ -32,8 +32,8 @@ else
         }
         ?>
     </div>
-    <div id="listing-array">
-    <h3><u>Listing Contents of Array</u></h3>
+    <div id="listing-array" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Listing Contents of Array</u></h3>
         <pre>
 $people = array("First Entry in Array","Second Entry in Array", "Third Entry", "Fourth");
 $length = count($people);
@@ -58,8 +58,8 @@ foreach($people as $person)
         }
         ?>
     </div>
-    <div id="sum-array">
-    <h3><u>Sum Contents of Array</u></h3>
+    <div id="sum-array" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Sum Contents of Array</u></h3>
         <pre>
 $numbers = array(1,2,3,4,5);
 $count = count($numbers);
