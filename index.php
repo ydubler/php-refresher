@@ -138,7 +138,6 @@ echo "&lt;br/&gt;";
 echo "NAME_OF_CONSTANT = NAME_OF_CONSTANT;&lt;br/&gt;";
 echo "is string? " . is_string(NAME_OF_CONSTANT) . "&lt;br/&gt;";
 echo var_dump(NAME_OF_CONSTANT) . "&lt;br/&gt;";
-echo "&lt;br/&gt;";
         </pre>
         <hr style="margin-top:0px">
         RESULT
@@ -175,7 +174,6 @@ echo "&lt;br/&gt;";
         echo 'NAME_OF_CONSTANT = "' . NAME_OF_CONSTANT . '"<br/>';
         echo "is string? " . is_string(NAME_OF_CONSTANT) . "<br/>";
         echo var_dump(NAME_OF_CONSTANT) . "<br/>";
-        echo "<br/>";
         ?>
     </div>
 </body>
