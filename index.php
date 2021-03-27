@@ -1,6 +1,6 @@
 <html>
 <body>
-    <h1>PHP-in-HTML Refresher</h1>
+    <h1 style="margin:20px">PHP-in-HTML Refresher</h1>
     <div id="conditional" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
     <h3 style="margin-top:0px"><u>Conditional</u></h3>
         <pre>
