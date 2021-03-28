@@ -688,19 +688,18 @@ $functionName();
         ?>
     </div>
     <div id="classes-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
-    <h3 style="margin-top:0px"><u>Classes I: Class with a constructor, constant, properties, and functions</u></h3>
+    <h3 style="margin-top:0px"><u>Classes I: Class and subclass with a constructor, constant, properties, and functions</u></h3>
         <pre>
-class Author
+class Person
 {
-    function __construct($name="Author Name", $age="Author Age")
-    {
+    function __construct($name="Author Name", $age="Author Age"){
         $this->name = $name;
         $this->age = $age;
     }
 
     const DESCRIPTION = "This class describes an author's basic information.";
-    public $name = "Shakespeare";
-    public $age = 396;
+    public $name = "";
+    public $age = 0;
 
     function setNameAndAge($name, $age)
     {
@@ -719,30 +718,51 @@ class Author
     }
 }
 
-$author = new Author();
+class Author extends Person
+{
+    public $famousBook = "";
 
-echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+    // Constructor
+    function __construct($name="Author Name", $age="Author Age", $book="Author's Famous Book")
+    {
+        $this->name = $name;
+        $this->age = $age;
+        $this->famousBook = $book;
+    }
+}
+
+$author = new Author("William Shakespeare", 396, "Romeo and Juliet");
+
+echo "&lt;u&gt;Author Information&lt;/u&gt;&lt;br/&gt;";
 echo $author->name;
 echo "&lt;br/&gt;";
 echo $author->age;
+echo "&lt;br/&gt;";
+echo $author->famousBook;
 echo "&lt;br/&gt;&lt;br/&gt;";
 
 $author->name="J. K. Rowling";
 $author->age=55;
-echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+$author->famousBook = "Harry Potter";
+echo "&lt;u&gt;Author Information&lt;/u&gt;&lt;br/&gt;";
 echo $author->name;
 echo "&lt;br/&gt;";
 echo $author->age;
+echo "&lt;br/&gt;";
+echo $author->famousBook;
 echo "&lt;br/&gt;&lt;br/&gt;";
 
 $author->setNameAndAge("Kurt Vonnegut", 101);
-echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+$author->famousBook = "Slaughterhouse V";
+echo "&lt;u&gt;Author Information&lt;/u&gt;&lt;br/&gt;";
 echo $author->getName();
 echo "&lt;br/&gt;";
 echo $author->getAge();
-echo "&lt;br/&gt;&lt;br/&gt;";
+echo "&lt;br/&gt;";
+echo $author->famousBook;
+echo "&lt;br/&gt;<br/>";
 
-echo "What does the Author class do?&lt;br/&gt;";
+echo "What does the Person class do?<br/>";
 echo $author::DESCRIPTION;
         </pre>
         <hr style="margin-top:0px">
