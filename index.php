@@ -266,8 +266,8 @@ print_r("&lt;br/&gt;(...print_r() DOES show the contents of the array)");
         print_r("<br/>(...print_r() DOES show the contents of the array)");
         ?>
     </div>
-    <div id="working-with-arrays" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
-    <h3 style="margin-top:0px"><u>Working With Arrays: in_array(), array_push(), array_pop()</u></h3>
+    <div id="working-with-arrays-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Working With Arrays I: in_array(), array_push(), array[], array_pop(), unset()</u></h3>
         <pre>
 $array = [1,2,3];
 $count = count($array);
@@ -314,16 +314,37 @@ echo "&lt;br/&gt;";
 echo "Is 5 in the array? ";
 $inArray = in_array(5, $array);
 echo $inArray ? "Yes" : "No";
+echo "&lt;br/&gt;";
+echo "Is 6 in the array? ";
+$inArray = in_array(6, $array);
+echo $inArray ? "Yes" : "No";
 echo "&lt;br/&gt;&lt;br/&gt;";
 
 echo 'array_pop($array) = ';
 $poppedValue = array_pop($array);
 echo $poppedValue;
-echo "&lt;br/&gt;&lt;br/&gt;";
+echo "&lt;br/&gt;";
 
 $count = count($array);
 echo "\$array = [ ";
 for($i=0; $i<$count; $i++)
+{
+    if($i < $count - 1)
+    {
+        echo $array[$i] . " , ";
+    }
+    else
+    {
+        echo $array[$i] . " ]";
+    }
+}
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+echo 'unset($array[0]);&lt;br/&gt;';
+unset($array[0]);
+$count = count($array);
+echo "\$array = [ ";
+for($i=array_key_first($array); $i<$count; $i++)
 {
     if($i < $count - 1)
     {
@@ -364,7 +385,8 @@ for($i=0; $i<$count; $i++)
         echo "<br/><br/>";
 
         echo 'array_push($array, 4);<br/><br/>';
-        array_push($array, 4);
+        array_push($array, 4); // push a value to the array 
+        $array[] = 5; // another way to push a value to the array
         $count = count($array);
         echo "\$array = [ ";
         for($i=0; $i<$count; $i++)
@@ -386,12 +408,16 @@ for($i=0; $i<$count; $i++)
         echo "Is 5 in the array? ";
         $inArray = in_array(5, $array);
         echo $inArray ? "Yes" : "No";
+        echo "<br/>";
+        echo "Is 6 in the array? ";
+        $inArray = in_array(6, $array);
+        echo $inArray ? "Yes" : "No";
         echo "<br/><br/>";
 
         echo 'array_pop($array) = ';
-        $poppedValue = array_pop($array);
+        $poppedValue = array_pop($array); // we pop the value at the end of the array off the array
         echo $poppedValue;
-        echo "<br/><br/>";
+        echo "<br/>";
 
         $count = count($array);
         echo "\$array = [ ";
@@ -406,6 +432,85 @@ for($i=0; $i<$count; $i++)
                 echo $array[$i] . " ]";
             }
         }
+        echo "<br/><br/>";
+
+        echo 'unset($array[0]);<br/>';
+        unset($array[0]); // unset removes a key/value pair by key from the array
+        $count = count($array);
+        echo "\$array = [ ";
+        for($i=array_key_first($array); $i<$count; $i++)
+        {
+            if($i < $count - 1)
+            {
+                echo $array[$i] . " , ";
+            }
+            else
+            {
+                echo $array[$i] . " ]";
+            }
+        }
+        ?>
+    </div>
+    <div id="working-with-arrays-2" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Working With Arrays II: Multidimensional Arrays</u></h3>
+        <pre>
+$array = [[1,2,3],[4,5,6,7],[8,9,10,11,12]];
+$count = count($array);
+
+echo "\$array = [ ";
+for($i = 0; $i<$count; $i++)
+{
+    $count2 = count($array[$i]);
+
+    for($j = 0; $j<$count2; $j++)
+    {
+        if($j == 0)
+        {
+        echo " [ " . $array[$i][$j] . " , ";      
+        }
+        else if($j < ($count2 - 1))
+        {
+        echo $array[$i][$j] . " , ";   
+        }
+        else
+        {
+        echo $array[$i][$j] . " ] ";     
+        }
+    }
+}
+echo " ]";
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Simple example of multidimensional array
+        $array = [[1,2,3],[4,5,6,7],[8,9,10,11,12]];
+        $count = count($array); // count of outer array
+
+        echo "\$array = [ ";
+        for($i = 0; $i<$count; $i++)
+        {
+            $count2 = count($array[$i]); // count of inner array
+
+            for($j = 0; $j<$count2; $j++)
+            {
+                if($j == 0)
+                {
+                echo " [ " . $array[$i][$j] . " , ";      
+                }
+                else if($j < ($count2 - 1))
+                {
+                echo $array[$i][$j] . " , ";   
+                }
+                else
+                {
+                echo $array[$i][$j] . " ] ";     
+                }
+            }
+        }
+        echo " ]";
         ?>
     </div>
     <div id="functions-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
@@ -580,6 +685,147 @@ $functionName();
         echo "<u>Famous Quotations</u><br/>";
         $functionName = "famousQuote";
         $functionName(); // call a function by a variable defined as a string containing the name of the function
+        ?>
+    </div>
+    <div id="classes-1" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Classes I: Class with a constructor, constant, properties, and functions</u></h3>
+        <pre>
+class Author
+{
+    function __construct($name="Author Name", $age="Author Age")
+    {
+        $this->name = $name;
+        $this->age = $age;
+    }
+
+    const DESCRIPTION = "This class describes an author's basic information.";
+    public $name = "Shakespeare";
+    public $age = 396;
+
+    function setNameAndAge($name, $age)
+    {
+        $this->name = $name;
+        $this->age = $age;
+    }
+
+    function getName()
+    {
+        return $this->name;
+    }
+
+    function getAge()
+    {
+        return $this->age;
+    }
+}
+
+$author = new Author();
+
+echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+echo $author->name;
+echo "&lt;br/&gt;";
+echo $author->age;
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$author->name="J. K. Rowling";
+$author->age=55;
+echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+echo $author->name;
+echo "&lt;br/&gt;";
+echo $author->age;
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$author->setNameAndAge("Kurt Vonnegut", 101);
+echo "&lt;u&gt;Author Information&lt;u&gt;&lt;br/&gt;";
+echo $author->getName();
+echo "&lt;br/&gt;";
+echo $author->getAge();
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+echo "What does the Author class do?&lt;br/&gt;";
+echo $author::DESCRIPTION;
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Classes I
+        class Person
+        {
+            // Constructor
+            function __construct($name="Author Name", $age="Author Age"){
+                $this->name = $name;
+                $this->age = $age;
+            }
+
+            const DESCRIPTION = "This class describes an author's basic information.";
+            public $name = "";
+            public $age = 0;
+
+            function setNameAndAge($name, $age)
+            {
+                $this->name = $name;
+                $this->age = $age;
+            }
+
+            function getName()
+            {
+                return $this->name;
+            }
+
+            function getAge()
+            {
+                return $this->age;
+            }
+        }
+
+        class Author extends Person
+        {
+            public $famousBook = "";
+
+            // Constructor
+            function __construct($name="Author Name", $age="Author Age", $book="Author's Famous Book")
+            {
+                $this->name = $name;
+                $this->age = $age;
+                $this->famousBook = $book;
+            }
+        }
+
+        $author = new Author("William Shakespeare", 396, "Romeo and Juliet");
+
+        echo "<u>Author Information</u><br/>";
+        echo $author->name;
+        echo "<br/>";
+        echo $author->age;
+        echo "<br/>";
+        echo $author->famousBook;
+        echo "<br/><br/>";
+
+        $author->name="J. K. Rowling"; // direct assignment of property
+        $author->age=55; // direct assignment of property
+        $author->famousBook = "Harry Potter";
+        echo "<u>Author Information</u><br/>";
+        echo $author->name;
+        echo "<br/>";
+        echo $author->age;
+        echo "<br/>";
+        echo $author->famousBook;
+        echo "<br/><br/>";
+
+        $author->setNameAndAge("Kurt Vonnegut", 101); // using function to assign property
+        $author->famousBook = "Slaughterhouse V";
+        echo "<u>Author Information</u><br/>";
+        echo $author->getName();
+        echo "<br/>";
+        echo $author->getAge();
+        echo "<br/>";
+        echo $author->famousBook;
+        echo "<br/><br/>";
+
+        echo "What does the Person class do?<br/>";
+        echo $author::DESCRIPTION;
         ?>
     </div>
 </body>
