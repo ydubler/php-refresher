@@ -760,9 +760,9 @@ echo "&lt;br/&gt;";
 echo $author->getAge();
 echo "&lt;br/&gt;";
 echo $author->famousBook;
-echo "&lt;br/&gt;<br/>";
+echo "&lt;br/&gt;&lt;br/&gt;";
 
-echo "What does the Person class do?<br/>";
+echo "What does the Person class do?&lt;br/&gt;";
 echo $author::DESCRIPTION;
         </pre>
         <hr style="margin-top:0px">
