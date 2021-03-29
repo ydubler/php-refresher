@@ -1057,6 +1057,10 @@ echo "It doesn't make sense!!";
             private static $numberOfDogs = 0;
             private static $numberOfCats = 0;
             private $name = "Animal";
+            public $dogs = [];
+            public $cats = [];
+            public $dogcats = [];
+
 
             function __construct($nameIn = "Animal")
             {
@@ -1159,9 +1163,9 @@ echo "It doesn't make sense!!";
         }
 
         $Animal = new Animal();
-        $dogs = [];
-        $cats = [];
-        $dogcats = [];
+        $dogs = $Animal->dogs;
+        $cats = $Animal->cats;
+        $dogcats = $Animal->dogcats;
 
         echo $Animal::KINGDOM_DESCRIPTION . "<br/>";
         echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
