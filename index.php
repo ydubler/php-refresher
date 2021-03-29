@@ -848,5 +848,384 @@ echo $author::DESCRIPTION;
         echo $author::DESCRIPTION;
         ?>
     </div>
+    <div id="classes-2" style="margin:20px;padding:20px;border:1px solid black;border-radius:20px">
+    <h3 style="margin-top:0px"><u>Classes II: Subclassing, static, private, and protected properties</u></h3>
+        <pre>
+// Classes II
+// private properties can only be accessed inside the specific class that defined it
+// protected properties can be accessed by the class and any of its subclasses
+// use parent::__construct() to call the parent constructor
+class Animal
+{
+    public const KINGDOM_DESCRIPTION = "The Kingdom of Animalia includes all animals.";
+    private static $numberOfAnimals = 0;
+    private static $numberOfDogs = 0;
+    private static $numberOfCats = 0;
+    private $name = "Animal";
+
+    function __construct($nameIn = "Animal")
+    {
+        echo "The Kingdom of Animalia has been instantiated.";
+        echo "&lt;br/&gt;";
+        $this->name = $nameIn;
+    }
+
+    protected static function incrementNumberOfAnimals()
+    {
+        self::$numberOfAnimals++;
+    }
+
+    protected static function incrementNumberOfDogs()
+    {
+        self::$numberOfDogs++;
+    }
+
+    protected static function incrementNumberOfCats()
+    {
+        self::$numberOfCats++;
+    }
+
+    public static function getNumberOfAnimals()
+    {
+        return self::$numberOfAnimals;
+    }
+
+    public static function getNumberOfDogs()
+    {
+        return self::$numberOfDogs;
+    }
+
+    public static function getNumberOfCats()
+    {
+        return self::$numberOfCats;
+    }
+
+    protected function setName($nameIn)
+    {
+        $this->name=$nameIn;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+}
+
+class Dog extends Animal
+{
+    function __construct($nameIn)
+    {
+        // To set the name of the animal we could either call:
+        // 1) the parent constructor using parent::__construct($nameIn) , or ,
+        // 2) the setName($nameIn) function
+
+        // parent::__construct($nameIn);    // 1 (not using this)
+        $this->setName($nameIn);            // 2 (using this)
+        self::incrementNumberOfAnimals();
+        self::incrementNumberOfDogs();
+        echo "A DOG has been born into the kingdom of Animalia.";
+        echo "&lt;br/&gt;";
+    }
+}
+
+class Cat extends Animal
+{
+    function __construct($nameIn)
+    {
+        // To set the name of the animal we could either call:
+        // 1) the parent constructor using parent::__construct($nameIn) , or ,
+        // 2) the setName($nameIn) function
+
+        // parent::__construct($nameIn);    // 1 (not using this)
+        $this->setName($nameIn);            // 2 (using this)
+        self::incrementNumberOfAnimals();
+        self::incrementNumberOfCats();
+        echo "A CAT has been born into the kingdom of Animalia.";
+        echo "&lt;br/&gt;";
+    }
+}
+
+class DogCat extends Dog
+{
+    function __construct($nameIn)
+    {
+        // To set the name of the animal we could either call:
+        // 1) the parent constructor using parent::__construct($nameIn) , or ,
+        // 2) the setName($nameIn) function
+
+        // parent::__construct($nameIn);    // 1 (not using this)
+        $this->setName($nameIn);            // 2 (using this)
+        self::incrementNumberOfAnimals();
+        self::incrementNumberOfCats();
+        self::incrementNumberOfDogs();
+        echo "A DOGCAT has been born into the kingdom of Animalia.";
+        echo "&lt;br/&gt;";
+    }
+}
+
+$Animal = new Animal();
+$dogs = [];
+$cats = [];
+$dogcats = [];
+
+echo $Animal::KINGDOM_DESCRIPTION . "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$dog1 = new Dog("Rufus");
+$dogs[] = $dog1;
+echo "The dog's name is " . $dog1->getName() . ".";
+echo "&lt;br/&gt;";
+echo "Currently " . $dog1::getNumberOfDogs() . " dogs exist: ";
+foreach($dogs as $dog){
+    echo " " . $dog->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$cat1 = new Cat("Gustav");
+$cats[] = $cat1;
+echo "The cat's name is " . $cat1->getName() . ".";
+echo "&lt;br/&gt;";
+echo "Currently " . $cat1::getNumberOfCats() . " cats exist: ";
+foreach($cats as $cat){
+    echo " " . $cat->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$dog2 = new Dog("Rocket");
+$dogs[] = $dog2;
+echo "The dog's name is " . $dog2->getName() . ".";
+echo "&lt;br/&gt;";
+echo "Currently " . $dog2::getNumberOfDogs() . " dogs exist: ";
+foreach($dogs as $dog){
+    echo " " . $dog->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$cat2 = new Cat("Achilles");
+$cats[] = $cat2;
+echo "The cat's name is " . $cat2->getName() . ".";
+echo "&lt;br/&gt;";
+echo "Currently " . $cat2::getNumberOfCats() . " cats exist: ";
+foreach($cats as $cat){
+    echo " " . $cat->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+
+$dogcat1 = new Dogcat("Crispy");
+$dogs[] = $dogcat1;
+$cats[] = $dogcat1;
+echo "The dogcat's name is " . $dogcat1->getName() . ".";
+echo "&lt;br/&gt;";
+echo "Currently " . $dogcat1::getNumberOfDogs() . " dogs exist: ";
+foreach($dogs as $dog){
+    echo " " . $dog->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $dogcat1::getNumberOfCats() . " cats exist: ";
+foreach($cats as $cat){
+    echo " " . $cat->getName() . " , ";
+}
+echo "&lt;br/&gt;";
+echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+echo "&lt;br/&gt;&lt;br/&gt;";
+echo "It doesn't make sense!!";
+        </pre>
+        <hr style="margin-top:0px">
+        RESULT
+        <hr style="margin-bottom:0px">
+        <br/>
+        <?php
+        // Classes II
+        // private properties can only be accessed inside the specific class that defined it
+        // protected properties can be accessed by the class and any of its subclasses
+        // use parent::__construct() to call the parent constructor
+        class Animal
+        {
+            public const KINGDOM_DESCRIPTION = "The Kingdom of Animalia includes all animals.";
+            private static $numberOfAnimals = 0;
+            private static $numberOfDogs = 0;
+            private static $numberOfCats = 0;
+            private $name = "Animal";
+
+            function __construct($nameIn = "Animal")
+            {
+                echo "The Kingdom of Animalia has been instantiated.";
+                echo "<br/>";
+                $this->name = $nameIn;
+            }
+
+            protected static function incrementNumberOfAnimals()
+            {
+                self::$numberOfAnimals++;
+            }
+
+            protected static function incrementNumberOfDogs()
+            {
+                self::$numberOfDogs++;
+            }
+
+            protected static function incrementNumberOfCats()
+            {
+                self::$numberOfCats++;
+            }
+
+            public static function getNumberOfAnimals()
+            {
+                return self::$numberOfAnimals;
+            }
+
+            public static function getNumberOfDogs()
+            {
+                return self::$numberOfDogs;
+            }
+
+            public static function getNumberOfCats()
+            {
+                return self::$numberOfCats;
+            }
+
+            protected function setName($nameIn)
+            {
+                $this->name=$nameIn;
+            }
+
+            public function getName()
+            {
+                return $this->name;
+            }
+        }
+
+        class Dog extends Animal
+        {
+            function __construct($nameIn)
+            {
+                // To set the name of the animal we could either call:
+                // 1) the parent constructor using parent::__construct($nameIn) , or ,
+                // 2) the setName($nameIn) function
+
+                // parent::__construct($nameIn);    // 1 (not using this)
+                $this->setName($nameIn);            // 2 (using this)
+                self::incrementNumberOfAnimals();
+                self::incrementNumberOfDogs();
+                echo "A DOG has been born into the kingdom of Animalia.";
+                echo "<br/>";
+            }
+        }
+
+        class Cat extends Animal
+        {
+            function __construct($nameIn)
+            {
+                // To set the name of the animal we could either call:
+                // 1) the parent constructor using parent::__construct($nameIn) , or ,
+                // 2) the setName($nameIn) function
+
+                // parent::__construct($nameIn);    // 1 (not using this)
+                $this->setName($nameIn);            // 2 (using this)
+                self::incrementNumberOfAnimals();
+                self::incrementNumberOfCats();
+                echo "A CAT has been born into the kingdom of Animalia.";
+                echo "<br/>";
+            }
+        }
+
+        class DogCat extends Dog
+        {
+            function __construct($nameIn)
+            {
+                // To set the name of the animal we could either call:
+                // 1) the parent constructor using parent::__construct($nameIn) , or ,
+                // 2) the setName($nameIn) function
+
+                // parent::__construct($nameIn);    // 1 (not using this)
+                $this->setName($nameIn);            // 2 (using this)
+                self::incrementNumberOfAnimals();
+                self::incrementNumberOfCats();
+                self::incrementNumberOfDogs();
+                echo "A DOGCAT has been born into the kingdom of Animalia.";
+                echo "<br/>";
+            }
+        }
+
+        $Animal = new Animal();
+        $dogs = [];
+        $cats = [];
+        $dogcats = [];
+
+        echo $Animal::KINGDOM_DESCRIPTION . "<br/>";
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+
+        $dog1 = new Dog("Rufus");
+        $dogs[] = $dog1;
+        echo "The dog's name is " . $dog1->getName() . ".";
+        echo "<br/>";
+        echo "Currently " . $dog1::getNumberOfDogs() . " dogs exist:<br/>";
+        foreach($dogs as $dog){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $dog->getName() . "<br/>";
+        }
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+
+        $cat1 = new Cat("Gustav");
+        $cats[] = $cat1;
+        echo "The cat's name is " . $cat1->getName() . ".";
+        echo "<br/>";
+        echo "Currently " . $cat1::getNumberOfCats() . " cats exist:<br/>";
+        foreach($cats as $cat){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $cat->getName() . "<br/>";
+        }
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+
+        $dog2 = new Dog("Rocket");
+        $dogs[] = $dog2;
+        echo "The dog's name is " . $dog2->getName() . ".";
+        echo "<br/>";
+        echo "Currently " . $dog2::getNumberOfDogs() . " dogs exist:<br/>";
+        foreach($dogs as $dog){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $dog->getName() . "<br/>";
+        }
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+
+        $cat2 = new Cat("Achilles");
+        $cats[] = $cat2;
+        echo "The cat's name is " . $cat2->getName() . ".";
+        echo "<br/>";
+        echo "Currently " . $cat2::getNumberOfCats() . " cats exist:<br/>";
+        foreach($cats as $cat){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $cat->getName() . "<br/>";
+        }
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+
+        $dogcat1 = new Dogcat("Crispy");
+        $dogs[] = $dogcat1;
+        $cats[] = $dogcat1;
+        echo "The dogcat's name is " . $dogcat1->getName() . ".";
+        echo "<br/>";
+        echo "Currently " . $dogcat1::getNumberOfDogs() . " dogs exist:<br/>";
+        foreach($dogs as $dog){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $dog->getName() . "<br/>";
+        }
+        echo "Currently " . $dogcat1::getNumberOfCats() . " cats exist:<br/>";
+        foreach($cats as $cat){
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $cat->getName() . "<br/>";
+        }
+        echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
+        echo "<br/><br/>";
+        echo "It doesn't make sense!!";
+        ?>
+    </div>
 </body>
 </html>
