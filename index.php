@@ -477,6 +477,11 @@ for($i = 0; $i<$count; $i++)
         echo $array[$i][$j] . " ] ";     
         }
     }
+
+    if($i < ($count-1))
+    {
+        echo " , ";
+    }
 }
 echo " ]";
         </pre>
@@ -508,6 +513,11 @@ echo " ]";
                 {
                 echo $array[$i][$j] . " ] ";     
                 }
+            }
+
+            if($i < ($count-1))
+            {
+                echo " , ";
             }
         }
         echo " ]";
