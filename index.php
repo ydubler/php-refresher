@@ -855,6 +855,7 @@ echo $author::DESCRIPTION;
 // private properties can only be accessed inside the specific class that defined it
 // protected properties can be accessed by the class and any of its subclasses
 // use parent::__construct() to call the parent constructor
+// use self::staticPropertyName to access static properties
 class Animal
 {
     public const KINGDOM_DESCRIPTION = "The Kingdom of Animalia includes all animals.";
@@ -1048,6 +1049,7 @@ echo "It doesn't make sense!!";
         // private properties can only be accessed inside the specific class that defined it
         // protected properties can be accessed by the class and any of its subclasses
         // use parent::__construct() to call the parent constructor
+        // use self::staticPropertyName to access static properties
         class Animal
         {
             public const KINGDOM_DESCRIPTION = "The Kingdom of Animalia includes all animals.";
