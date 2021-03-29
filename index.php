@@ -219,8 +219,8 @@ print("This is a print statement.");
         <?php
         // here document >>> eot
 echo <<<EOT
-To be or not to be, that is the question. Whether 'tis nobler in mind to suffer the slings and arrows of outrageous
-fortune or tocome to terms with a sea of troubles and by opposing end them...<br/><br/>
+<pre>To be or not to be, that is the question. Whether 'tis nobler in mind to suffer the slings and arrows of outrageous
+fortune or tocome to terms with a sea of troubles and by opposing end them...</pre><br/><br/>
 EOT;
 
         print("This is a print statement.");
