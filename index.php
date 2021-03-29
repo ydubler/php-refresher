@@ -1182,7 +1182,7 @@ echo "It doesn't make sense!!";
         echo "Currently " . $Animal::getNumberOfAnimals() . " animals exist.";
         echo "<br/><br/>";
 
-        $cat1 = new Cat("Gustav");
+        $cat1 = new Cat("Artemis");
         $cats[] = $cat1;
         echo "The cat's name is " . $cat1->getName() . ".";
         echo "<br/>";
